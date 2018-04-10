@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Utilities;
+
 
 namespace Browser.Utilities
 {
@@ -41,12 +41,13 @@ namespace Browser.Utilities
         public Crawler()
         {
             //updateLoadBalancersListAsync();
-            //Post(DEFAULT_URI_LOAD_BALANCERS, "DekstopApp", "Test");
         }
 
 
-        public void indexFilesAndDirectories()
+        public int indexFilesAndDirectories()
         {
+            int counter = 0;
+            words = new List<string>();
             readThesaurus();
             String path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\Docs";
             //With this method all the .txt files in a directory are found recursively.
@@ -54,7 +55,7 @@ namespace Browser.Utilities
             char[] delimiterChars = { ' ', ',', '.', ':', '\t', '?', '!', ';', '-' };
             foreach (string fileName in files)
             {
-               
+                words = new List<string>();
                 string[] readText = File.ReadAllLines(fileName);
                 foreach (string line in readText)
                 {
@@ -68,7 +69,7 @@ namespace Browser.Utilities
                         //TODO
                         foreach (string value in thesaurus)
                         {
-                            if (value.Equals(word))
+                            if (value.ToLower().Equals(word.ToLower()) && !valueExists(word, fileName))
                             {
                                 //Insert term into list
                                 words.Add(word);
@@ -79,9 +80,11 @@ namespace Browser.Utilities
 
 
                     //Send terms to balancer via POST
-                    postWordsToLoadBalancers(path);
+                    postWordsToLoadBalancers(fileName);
+                    counter = counter + words.Count();
                 }
             }
+            return counter;
 
         }
 
@@ -165,7 +168,7 @@ namespace Browser.Utilities
                     //resultContent = URLEncoder.encode(resultCo, "UTF-8");
                     // Send log to monitor
 
-                    //await SendLog(resultContent);
+                    await SendLog(resultContent);
                 }
             }
         }
@@ -205,8 +208,6 @@ namespace Browser.Utilities
             var model = JsonConvert.DeserializeObject<List<RootObject>>(json);
 
             List<String> result = new List<String>();
-            //var json = JsonParse.FromJson(new WebClient().DownloadString("http://localhost:7303/api/Terms/1"));
-            //var json = JsonParse.FromJson("{\"Id\":16,\"Value\":\"rain\",\"Path\":\"C:/ Users / Borja / Desktop / Browser / Browser / Docs\",\"Time\":\"11:56:26.5672634\"}]");
             if (model.Count > 0)
             {
                 for (int i = 0; i < model.Count; i++)
@@ -218,6 +219,22 @@ namespace Browser.Utilities
             {
                 result.Add("No results found");
                 return result;
+            }
+        }
+
+        public bool valueExists(string value, string path)
+        {
+            string finalPath = path.Replace("\\", "/");
+            String json = new WebClient().DownloadString("http://localhost:7303/api/Terms?Value=" + value + "&Path="+finalPath);
+            var model = JsonConvert.DeserializeObject<List<RootObject>>(json);
+
+            if (model.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

@@ -155,5 +155,13 @@ namespace BrowserAPI.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, db.Terms.Where(e => e.Value.ToLower() == Value).ToList());
             }
         }
+
+        public HttpResponseMessage GetTermFilter3(string Value, string Path)
+        {
+            using (db)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, db.Terms.Where(e => e.Value.ToLower() == Value && e.Path.ToLower() == Path).ToList());
+            }
+        }
     }
 }

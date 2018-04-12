@@ -1,0 +1,13 @@
+C:\Users\Borja\Desktop\Nueva carpeta\BrowserDLS\Browser\Browser\obj\Debug\Browser.csprojResolveAssemblyReference.cache
+C:\Users\Borja\Desktop\Nueva carpeta\BrowserDLS\Browser\Browser\obj\Debug\Browser.Properties.Resources.resources
+C:\Users\Borja\Desktop\Nueva carpeta\BrowserDLS\Browser\Browser\obj\Debug\Browser.Form1.resources
+C:\Users\Borja\Desktop\Nueva carpeta\BrowserDLS\Browser\Browser\obj\Debug\Browser.csproj.GenerateResource.cache
+C:\Users\Borja\Desktop\Nueva carpeta\BrowserDLS\Browser\Browser\obj\Debug\Browser.csproj.CoreCompileInputs.cache
+C:\Users\Borja\Desktop\Nueva carpeta\BrowserDLS\Browser\Browser\bin\Debug\Browser.exe.config
+C:\Users\Borja\Desktop\Nueva carpeta\BrowserDLS\Browser\Browser\bin\Debug\Browser.exe
+C:\Users\Borja\Desktop\Nueva carpeta\BrowserDLS\Browser\Browser\bin\Debug\Browser.pdb
+C:\Users\Borja\Desktop\Nueva carpeta\BrowserDLS\Browser\Browser\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Borja\Desktop\Nueva carpeta\BrowserDLS\Browser\Browser\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Borja\Desktop\Nueva carpeta\BrowserDLS\Browser\Browser\obj\Debug\Browser.csproj.CopyComplete
+C:\Users\Borja\Desktop\Nueva carpeta\BrowserDLS\Browser\Browser\obj\Debug\Browser.exe
+C:\Users\Borja\Desktop\Nueva carpeta\BrowserDLS\Browser\Browser\obj\Debug\Browser.pdb
